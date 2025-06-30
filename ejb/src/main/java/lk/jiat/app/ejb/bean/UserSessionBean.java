@@ -4,7 +4,7 @@ import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lk.jiat.app.core.model.User;
-import lk.jiat.app.ejb.remote.UserService;
+import lk.jiat.app.core.service.UserService;
 
 @Stateless
 public class UserSessionBean implements UserService {
@@ -35,5 +35,26 @@ public class UserSessionBean implements UserService {
     @Override
     public void deleteUser(User user) {
         em.remove(user);
+    }
+
+    @Override
+    public boolean validate(String email, String password) {
+
+        // First Method
+
+        User user = em.createNamedQuery("User.findByEmail", User.class)
+                .setParameter("email", email).getSingleResult();
+
+        return user != null && user.getPassword().equals(password);
+
+        // Second Method
+
+//        User u = em.createNamedQuery("User.findByEmailAndPassword", User.class)
+//                .setParameter("email", email)
+//                .setParameter("password", password)
+//                .getSingleResult();
+//
+//        return u != null;
+
     }
 }

@@ -11,7 +11,7 @@
 
     <artifactId>ejb</artifactId>
     <packaging>ejb</packaging>
-    <name>j2ee-ejb</name>
+    <name>j2ee-example-ejb</name>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -29,6 +29,7 @@
             <groupId>lk.jiat.app</groupId>
             <artifactId>core</artifactId>
             <version>1.0</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
 

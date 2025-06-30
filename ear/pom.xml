@@ -11,7 +11,7 @@
 
     <artifactId>ear</artifactId>
     <packaging>ear</packaging>
-    <name>j2ee-ear</name>
+    <name>j2ee-example-ear</name>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -24,6 +24,7 @@
             <groupId>lk.jiat.app</groupId>
             <artifactId>core</artifactId>
             <version>1.0</version>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>lk.jiat.app</groupId>
@@ -49,11 +50,6 @@
                 <configuration>
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
                     <modules>
-                        <jarModule>
-                            <groupId>lk.jiat.app</groupId>
-                            <artifactId>core</artifactId>
-                            <bundleFileName>core-module.jar</bundleFileName>
-                        </jarModule>
                         <ejbModule>
                             <groupId>lk.jiat.app</groupId>
                             <artifactId>ejb</artifactId>

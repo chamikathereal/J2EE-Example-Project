@@ -11,7 +11,7 @@
 
     <artifactId>web</artifactId>
     <packaging>war</packaging>
-    <name>j2ee-web</name>
+    <name>j2ee-example-web</name>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -23,13 +23,25 @@
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-web-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+            <version>3.0.1</version>
         </dependency>
         <dependency>
             <groupId>lk.jiat.app</groupId>
-            <artifactId>ejb</artifactId>
+            <artifactId>core</artifactId>
             <version>1.0</version>
-            <type>ejb-client</type>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>lk.jiat.app</groupId>-->
+<!--            <artifactId>ejb</artifactId>-->
+<!--            <version>1.0</version>-->
+<!--            <type>ejb-client</type>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>

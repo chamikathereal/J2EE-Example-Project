@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>core</artifactId>
+    <name>j2ee-example-core</name>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -24,6 +25,15 @@
             <version>3.1.0</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
+
+    <build>
+        <finalName>${project.name}</finalName>
+    </build>
 
 </project>
