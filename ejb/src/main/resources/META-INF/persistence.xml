@@ -1,7 +1,7 @@
 <persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
     <persistence-unit name="AppPU" transaction-type="JTA">
-        <jta-data-source></jta-data-source>
-        <class>lk.jiat.app.ejb.model.User</class>
+        <jta-data-source>j2ee_jdbc_example</jta-data-source>
+        <class>lk.jiat.app.core.model.User</class>
         <properties>
             <property name="jakarta.persistence.schema-generation.database.action" value="create"/>
         </properties>

@@ -6,6 +6,10 @@
       <set>
         <MavenCompilerTask>
           <option name="goal" value="install" />
+          <option name="projectPath" value="$PROJECT_DIR$/core/pom.xml" />
+        </MavenCompilerTask>
+        <MavenCompilerTask>
+          <option name="goal" value="install" />
           <option name="projectPath" value="$PROJECT_DIR$/ejb/pom.xml" />
         </MavenCompilerTask>
         <MavenCompilerTask>

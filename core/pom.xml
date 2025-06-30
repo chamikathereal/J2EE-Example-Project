@@ -9,9 +9,7 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>web</artifactId>
-    <packaging>war</packaging>
-    <name>j2ee-web</name>
+    <artifactId>core</artifactId>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -21,19 +19,11 @@
 
     <dependencies>
         <dependency>
-            <groupId>jakarta.platform</groupId>
-            <artifactId>jakarta.jakartaee-web-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>lk.jiat.app</groupId>
-            <artifactId>ejb</artifactId>
-            <version>1.0</version>
-            <type>ejb-client</type>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.1.0</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
-
-    <build>
-        <finalName>${project.name}</finalName>
-    </build>
 
 </project>

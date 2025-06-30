@@ -1,10 +1,16 @@
-package lk.jiat.app.ejb.model;
+package lk.jiat.app.core.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "users")
-public class User {
+@NamedQueries({
+//        @NamedQuery(name = "User.findByEmail", query = "select u from User u where u.email = ?1"),
+        @NamedQuery(name = "User.findByEmail", query = "select u from User u where u.email =:email")
+})
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,6 +21,22 @@ public class User {
     private String password;
     @Enumerated(EnumType.STRING)
     private UserType userType = UserType.USER;
+
+    public User() {
+    }
+
+    public User(Long id, String name, String contact, String email, String password, UserType userType) {
+        this.id = id;
+        this.name = name;
+        this.contact = contact;
+        this.email = email;
+        this.password = password;
+        this.userType = userType;
+    }
+
+    public User(String name, String email, String contact, String password) {
+
+    }
 
     public Long getId() {
         return id;

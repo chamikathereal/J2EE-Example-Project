@@ -22,7 +22,7 @@
         <tr>
             <th>Contact</th>
             <td>
-                <input type="password" name="contact"/>
+                <input type="number" name="contact"/>
             </td>
         </tr>
         <tr>
