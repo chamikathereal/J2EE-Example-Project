@@ -10,9 +10,10 @@
     <packaging>pom</packaging>
     <modules>
         <module>web</module>
-        <module>ejb</module>
+        <module>auth</module>
         <module>ear</module>
         <module>core</module>
+        <module>product</module>
     </modules>
 
     <properties>

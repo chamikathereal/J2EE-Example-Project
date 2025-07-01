@@ -8,6 +8,7 @@ import lk.jiat.app.core.service.UserService;
 
 @Stateless
 public class UserSessionBean implements UserService {
+
     @PersistenceContext
     private EntityManager em;
 
