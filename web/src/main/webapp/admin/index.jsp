@@ -1,34 +1,32 @@
-<%@ page import="javax.naming.NamingException" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="javax.naming.InitialContext" %>
 <%@ page import="lk.jiat.app.core.service.ProductService" %>
-<%@ page import="java.util.List" %>
 <%@ page import="lk.jiat.app.core.model.Product" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="javax.naming.NamingException" %>
+<%@ page import="java.util.List" %><%--
+  Created by IntelliJ IDEA.
+  User: ASUS
+  Date: 7/1/2025
+  Time: 3:34 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Home</title>
+    <title>Admin | Dashboard</title>
 </head>
 <body>
 
-<h1>Home</h1>
+<h1>Admin | Dashboard</h1>
+<a href="${pageContext.request.contextPath}/admin/add_product.jsp">Add Product</a>
 
-<c:if test="${empty pageContext.request.userPrincipal}">
-    <a href="${pageContext.request.contextPath}/register.jsp">Register</a>
-    <a href="${pageContext.request.contextPath}/login.jsp">Login</a>
-</c:if>
-<c:if test="${not empty pageContext.request.userPrincipal}">
-    <a href="${pageContext.request.contextPath}/logout">Log out</a>
-</c:if>
-
-<br>
-
+<h1>All Product</h1>
 <%
-    try{
+    try {
         InitialContext ic = new InitialContext();
         ProductService productService = (ProductService) ic.lookup("java:global/j2ee-example-ear/product-module/ProductSessionBean!lk.jiat.app.core.service.ProductService");
         List<Product> products = productService.getAllProducts();
-        pageContext.setAttribute("products",products);
+        pageContext.setAttribute("products", products);
     } catch (NamingException e) {
         throw new RuntimeException(e);
     }
@@ -47,9 +45,13 @@
             <td>${product.description}</td>
             <td>${product.price}</td>
             <td>${product.quantity}</td>
+            <td>
+                <a href="${pageContext.request.contextPath}/admin/delete_product?pid=${product.id}">Delete</a>
+            </td>
         </tr>
     </c:forEach>
 </table>
+
 
 </body>
 </html>

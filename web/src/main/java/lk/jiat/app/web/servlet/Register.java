@@ -6,11 +6,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lk.jiat.app.core.mail.VerificationMail;
 import lk.jiat.app.core.model.User;
+import lk.jiat.app.core.provider.MailServiceProvide;
 import lk.jiat.app.core.service.UserService;
+import lk.jiat.app.core.util.Encryption;
 
 
 import java.io.IOException;
+import java.util.UUID;
 
 @WebServlet("/register")
 public class Register extends HttpServlet {
@@ -26,10 +30,18 @@ public class Register extends HttpServlet {
         String contact = request.getParameter("contact");
         String password = request.getParameter("password");
 
-        User user = new User(name, email, contact, password);
+        String encryptedPassword = Encryption.encrypt(password);
 
-        System.out.println(name + " " + email + " " + contact + " " + password);
+        User user = new User(name, email, contact, encryptedPassword);
+
+        String verificationCode = UUID.randomUUID().toString();
+        VerificationMail mail = new VerificationMail(email, verificationCode);
+        MailServiceProvide.getInstance().sendMail(mail);
+
+        System.out.println(name + " " + email + " " + contact + " " + encryptedPassword);
         userService.addUser(user);
+
+        response.sendRedirect(request.getContextPath() + "/index.jsp");
 
     }
 }

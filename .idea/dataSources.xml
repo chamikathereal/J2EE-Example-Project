@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="@localhost" uuid="152bc3cc-fffb-4bd1-a3f6-da8d9f24c660">
-      <driver-ref>mysql_aurora.aws_wrapper</driver-ref>
+    <data-source source="LOCAL" name="j2ee_example_db@localhost" uuid="2d7771a9-e577-40e5-a90a-a847da44c5ca">
+      <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>software.amazon.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:aws-wrapper:mysql://localhost:3306</jdbc-url>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/j2ee_example_db?allowPublicKeyRetrieval=true&amp;useSSL=false</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.host.port" />
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />

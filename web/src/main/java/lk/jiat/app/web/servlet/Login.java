@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import lk.jiat.app.core.util.Encryption;
 
 import java.io.IOException;
 
@@ -28,8 +29,10 @@ public class Login extends HttpServlet {
         String password = request.getParameter("password");
         System.out.println(email + " " + password);
 
+        //String encryptedPassword = Encryption.encrypt(password);
+
         AuthenticationParameters parameters = AuthenticationParameters.withParams()
-                        .credential(new UsernamePasswordCredential(email, password));
+                        .credential(new UsernamePasswordCredential(email, Encryption.encrypt(password)));
 
         System.out.println("parameters :" + parameters);
         AuthenticationStatus status = securityContext.authenticate(request, response, parameters);
@@ -37,8 +40,6 @@ public class Login extends HttpServlet {
 
         if (status == AuthenticationStatus.SUCCESS) {
             System.out.println("Authentication successful");
-            HttpSession session = request.getSession();
-            session.setAttribute("user", email);
             response.sendRedirect(request.getContextPath() + "/index.jsp");
             System.out.println("Correct Credentials Context Path: " + request.getContextPath());
         } else {

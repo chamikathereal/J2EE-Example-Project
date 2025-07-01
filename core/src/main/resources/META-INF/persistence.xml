@@ -1,11 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
     <persistence-unit name="AppPU" transaction-type="JTA">
         <jta-data-source>j2ee_jdbc_example</jta-data-source>
         <class>lk.jiat.app.core.model.User</class>
         <class>lk.jiat.app.core.model.Product</class>
+        <shared-cache-mode>NONE</shared-cache-mode>
         <properties>
             <property name="jakarta.persistence.schema-generation.database.action" value="create"/>
+            <property name="jakarta.persistence.sharedCache.mode" value="NONE"/>
+            <property name="eclipselink.cache.shared.default" value="false"/>
         </properties>
     </persistence-unit>
 </persistence>

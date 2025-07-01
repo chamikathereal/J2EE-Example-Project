@@ -10,6 +10,7 @@ import jakarta.persistence.*;
         @NamedQuery(name = "User.findByEmailAndPassword",
                 query = "select u from User u where u.email =:email and u.password=:password"),
 })
+@Cacheable(false)
 public class User implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
