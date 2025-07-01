@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
     <persistence-unit name="AppPU" transaction-type="JTA">
         <jta-data-source>j2ee_jdbc_example</jta-data-source>

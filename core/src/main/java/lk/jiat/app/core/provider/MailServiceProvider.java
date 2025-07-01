@@ -10,28 +10,28 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class MailServiceProvide {
+public class MailServiceProvider {
     private Properties properties = new Properties();
     private Authenticator authenticator;
-    private static MailServiceProvide instance;
+    private static MailServiceProvider instance;
     private ThreadPoolExecutor executor;
     private BlockingQueue<Runnable> blockingQueue = new LinkedBlockingQueue<>();
 
-    private MailServiceProvide(){
+    private MailServiceProvider() {
         properties.put("mail.smtp.host", "sandbox.smtp.mailtrap.io");
         properties.put("mail.smtp.port", "2525");
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "false");
     }
 
-    public static MailServiceProvide getInstance(){
-        if (instance == null){
-            instance = new MailServiceProvide();
+    public static MailServiceProvider getInstance() {
+        if (instance == null) {
+            instance = new MailServiceProvider();
         }
         return instance;
     }
 
-    public void start(){
+    public void start() {
         authenticator = new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -39,14 +39,14 @@ public class MailServiceProvide {
             }
         };
 
-        executor = new ThreadPoolExecutor(5,10,5, TimeUnit.SECONDS,blockingQueue,
+        executor = new ThreadPoolExecutor(5, 10, 5, TimeUnit.SECONDS, blockingQueue,
                 new ThreadPoolExecutor.AbortPolicy());
         executor.prestartAllCoreThreads();
 
-        System.out.println("MailServiceProvide: Running...");
+        System.out.println("MailServiceProvider: Running...");
     }
 
-    public void sendMail(Mailable mailable){
+    public void sendMail(Mailable mailable) {
         blockingQueue.offer(mailable);
     }
 
@@ -58,9 +58,11 @@ public class MailServiceProvide {
         return authenticator;
     }
 
-    public void shutdown(){
-        if (executor != null){
+    public void shutdown() {
+        if (executor != null) {
             executor.shutdown();
         }
     }
+
+
 }

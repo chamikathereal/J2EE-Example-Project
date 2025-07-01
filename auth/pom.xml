@@ -11,7 +11,7 @@
 
     <artifactId>auth</artifactId>
     <packaging>ejb</packaging>
-    <name>j2ee-example-auth</name>
+    <name>j2ee-example-auth-ejb</name>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lk.jiat.app.core.mail.VerificationMail;
 import lk.jiat.app.core.model.User;
-import lk.jiat.app.core.provider.MailServiceProvide;
+import lk.jiat.app.core.provider.MailServiceProvider;
 import lk.jiat.app.core.service.UserService;
 import lk.jiat.app.core.util.Encryption;
 
@@ -36,7 +36,7 @@ public class Register extends HttpServlet {
 
         String verificationCode = UUID.randomUUID().toString();
         VerificationMail mail = new VerificationMail(email, verificationCode);
-        MailServiceProvide.getInstance().sendMail(mail);
+        MailServiceProvider.getInstance().sendMail(mail);
 
         System.out.println(name + " " + email + " " + contact + " " + encryptedPassword);
         userService.addUser(user);
