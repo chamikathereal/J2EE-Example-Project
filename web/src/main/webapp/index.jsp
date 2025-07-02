@@ -1,16 +1,16 @@
-<%@ page import="javax.naming.NamingException" %>
 <%@ page import="javax.naming.InitialContext" %>
+<%@ page import="javax.naming.NamingException" %>
 <%@ page import="lk.jiat.app.core.service.ProductService" %>
-<%@ page import="java.util.List" %>
 <%@ page import="lk.jiat.app.core.model.Product" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Home</title>
 </head>
 <body>
-
 <h1>Home</h1>
 
 <c:if test="${empty pageContext.request.userPrincipal}">
@@ -18,21 +18,20 @@
     <a href="${pageContext.request.contextPath}/login.jsp">Login</a>
 </c:if>
 <c:if test="${not empty pageContext.request.userPrincipal}">
-    <a href="${pageContext.request.contextPath}/logout">Log out</a>
+    <a href="${pageContext.request.contextPath}/logout">Logout</a>
 </c:if>
 
-<br>
-
 <%
-    try{
+    try {
         InitialContext ic = new InitialContext();
-        ProductService productService = (ProductService) ic.lookup("java:global/j2ee-example-ear/product-module/ProductSessionBean!lk.jiat.app.core.service.ProductService");
+        ProductService productService = (ProductService) ic.lookup("lk.jiat.app.core.service.ProductService");
         List<Product> products = productService.getAllProducts();
-        pageContext.setAttribute("products",products);
+        pageContext.setAttribute("products", products);
     } catch (NamingException e) {
         throw new RuntimeException(e);
     }
 %>
+
 
 <table>
     <tr>

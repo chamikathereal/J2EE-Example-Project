@@ -1,12 +1,15 @@
 package lk.jiat.app.core.service;
 
+import jakarta.ejb.Remote;
 import lk.jiat.app.core.model.Product;
 
 import java.util.List;
+import java.util.Optional;
 
+@Remote
 public interface ProductService {
-    Product getProductById(Long id);
-    Product getProductByName(String name);
+    Optional<Product> getProductById(Long id);
+    Optional<Product> getProductByName(String name);
     List<Product> getProductSByCategory(String category);
     List<Product> getAllProducts();
     void addProduct(Product product);

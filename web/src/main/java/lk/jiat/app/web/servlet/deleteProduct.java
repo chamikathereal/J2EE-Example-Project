@@ -1,6 +1,7 @@
 package lk.jiat.app.web.servlet;
 
 import jakarta.ejb.EJB;
+import jakarta.ejb.EJBException;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -22,8 +23,14 @@ public class deleteProduct extends HttpServlet {
 
         String pid = request.getParameter("pid");
 
-        productService.deleteProduct(Long.parseLong(pid));
-        response.sendRedirect(request.getContextPath() + "/admin");
+        System.out.println("product id: " + pid);
+
+        try {
+            productService.deleteProduct(Long.parseLong(pid));
+            response.sendRedirect(request.getContextPath() + "/admin");
+        }catch (EJBException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 }

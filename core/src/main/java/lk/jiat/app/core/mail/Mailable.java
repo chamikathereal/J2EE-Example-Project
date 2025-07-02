@@ -21,7 +21,7 @@ public abstract class Mailable implements  Runnable{
             Session session = Session.getInstance(mailServiceProvider.getProperties(),
                     mailServiceProvider.getAuthenticator());
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(Env.get("app.mail")));
+            message.setFrom(new InternetAddress(Env.get("app.email")));
             build(message);
             Transport.send(message);
         } catch (Exception e) {

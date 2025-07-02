@@ -37,7 +37,7 @@ public class MailServiceProvider {
         authenticator = new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(Env.get("mailtrap.username"), Env.get("mailtrap-password"));
+                return new PasswordAuthentication(Env.get("mailtrap.username"), Env.get("mailtrap.password"));
             }
         };
 

@@ -33,15 +33,17 @@ public class Register extends HttpServlet {
         String encryptedPassword = Encryption.encrypt(password);
 
         User user = new User(name, email, contact, encryptedPassword);
-
         String verificationCode = UUID.randomUUID().toString();
-        VerificationMail mail = new VerificationMail(email, verificationCode);
-        MailServiceProvider.getInstance().sendMail(mail);
+        user.setVerificationCode(verificationCode);
 
         System.out.println(name + " " + email + " " + contact + " " + encryptedPassword);
         userService.addUser(user);
 
-        response.sendRedirect(request.getContextPath() + "/index.jsp");
+        VerificationMail mail = new VerificationMail(email, verificationCode);
+        MailServiceProvider.getInstance().sendMail(mail);
+
+
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
 
     }
 }

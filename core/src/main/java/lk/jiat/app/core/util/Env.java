@@ -5,6 +5,7 @@ import java.util.Properties;
 
 public class Env {
     private static Properties properties = new Properties();
+
     static {
         try {
             InputStream is = Env.class.getClassLoader().getResourceAsStream("application.properties");
@@ -17,5 +18,4 @@ public class Env {
     public static String get(String key) {
         return properties.getProperty(key);
     }
-
 }

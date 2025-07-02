@@ -2,6 +2,9 @@ package lk.jiat.app.core.mail;
 
 import jakarta.mail.Message;
 import jakarta.mail.internet.InternetAddress;
+import lk.jiat.app.core.util.Encryption;
+
+import java.util.Base64;
 
 public class VerificationMail extends Mailable{
     private String to;
@@ -17,8 +20,12 @@ public class VerificationMail extends Mailable{
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
         message.setSubject("Verification Mail");
 
+        String encode = Base64.getEncoder().encodeToString(to.getBytes());
+
+        String link = "http://localhost:8080/j2ee-example/verify?id="+encode+"&vc="+verificationCode;
+
         //
-        message.setText("Hello Dev, your verification code is " + verificationCode);
-        //message.setContent(verificationCode, "text/html; charset=utf-8");
+        //message.setText("Hello Dev, your verification code is " + verificationCode);
+        message.setContent(link, "text/html; charset=utf-8");
     }
 }

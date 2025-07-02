@@ -40,16 +40,11 @@ public class Login extends HttpServlet {
         System.out.println("status:" + status);
 
         if (status == AuthenticationStatus.SUCCESS) {
-            //System.out.println("Authentication successful");
+            System.out.println("Authentication successful");
             response.sendRedirect(request.getContextPath() + "/index.jsp");
-
-            //response.sendError(502,"Logging Error");
-            //throw new ArithmeticException("Authentication Error");
         } else {
+            System.out.println("Authentication failed");
             throw new LoginFailedException("Invalid username or password");
-//            System.out.println("Authentication failed");
-//            response.sendRedirect(request.getContextPath() + "/login.jsp");
-//            System.out.println("Incorrect Credentials Context Path: " + request.getContextPath());
         }
 
     }

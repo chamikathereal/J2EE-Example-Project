@@ -9,7 +9,7 @@ public class Encryption {
         try {
             MessageDigest digest = MessageDigest.getInstance("MD5");
             digest.update(password.getBytes(),0,password.length());
-            BigInteger bi = new BigInteger(1, digest.digest());
+            BigInteger bi = new BigInteger(1,digest.digest());
             return bi.toString(16);
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
