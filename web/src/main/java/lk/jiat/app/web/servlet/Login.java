@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import lk.jiat.app.core.exception.LoginFailedException;
 import lk.jiat.app.core.util.Encryption;
 
 import java.io.IOException;
@@ -39,13 +40,16 @@ public class Login extends HttpServlet {
         System.out.println("status:" + status);
 
         if (status == AuthenticationStatus.SUCCESS) {
-            System.out.println("Authentication successful");
+            //System.out.println("Authentication successful");
             response.sendRedirect(request.getContextPath() + "/index.jsp");
-            System.out.println("Correct Credentials Context Path: " + request.getContextPath());
+
+            //response.sendError(502,"Logging Error");
+            //throw new ArithmeticException("Authentication Error");
         } else {
-            System.out.println("Authentication failed");
-            response.sendRedirect(request.getContextPath() + "/login.jsp");
-            System.out.println("Incorrect Credentials Context Path: " + request.getContextPath());
+            throw new LoginFailedException("Invalid username or password");
+//            System.out.println("Authentication failed");
+//            response.sendRedirect(request.getContextPath() + "/login.jsp");
+//            System.out.println("Incorrect Credentials Context Path: " + request.getContextPath());
         }
 
     }

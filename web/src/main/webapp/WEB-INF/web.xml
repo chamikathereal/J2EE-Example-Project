@@ -36,5 +36,15 @@
     <security-role>
         <role-name>USER</role-name>
     </security-role>
+    
+    <error-page>
+        <exception-type>lk.jiat.app.core.exception.LoginFailedException</exception-type>
+        <location>/login_error.jsp</location>
+    </error-page>
+    
+    <error-page>
+        <exception-type>java.lang.RuntimeException</exception-type>
+        <location>/500.jsp</location>
+    </error-page>
 
 </web-app>

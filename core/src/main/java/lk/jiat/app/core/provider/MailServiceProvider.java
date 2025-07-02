@@ -3,6 +3,7 @@ package lk.jiat.app.core.provider;
 import jakarta.mail.Authenticator;
 import jakarta.mail.PasswordAuthentication;
 import lk.jiat.app.core.mail.Mailable;
+import lk.jiat.app.core.util.Env;
 
 import java.util.Properties;
 import java.util.concurrent.BlockingQueue;
@@ -18,10 +19,11 @@ public class MailServiceProvider {
     private BlockingQueue<Runnable> blockingQueue = new LinkedBlockingQueue<>();
 
     private MailServiceProvider() {
-        properties.put("mail.smtp.host", "sandbox.smtp.mailtrap.io");
-        properties.put("mail.smtp.port", "2525");
+        properties.put("mail.smtp.host", Env.get("mailtrap.host"));
+        properties.put("mail.smtp.port", Env.get("mailtrap.port"));
         properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "false");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.ssl.trust", Env.get("mailtrap.host"));
     }
 
     public static MailServiceProvider getInstance() {
@@ -35,7 +37,7 @@ public class MailServiceProvider {
         authenticator = new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("fbb92aa416ab07", "26371a707f9156");
+                return new PasswordAuthentication(Env.get("mailtrap.username"), Env.get("mailtrap-password"));
             }
         };
 
